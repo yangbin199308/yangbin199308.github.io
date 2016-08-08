@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{padding: 0;margin: 0;list-style: none;}
+		#ul1{width: 100%;height: 100%;position: relative;}
+		#ul1 li{width: 100%; height: 500px;position: absolute;left: 0;top: 0;}
+		#ul1 .n1{background: #1abc9c; /*box-shadow:inset 0 40px 100px #00a685;*/}
+		#ul1 .n2{background: #d9caa3; /*box-shadow:inset 0 40px 100px #d7b867;*/}
+		#ul1 .n3{background: #ffffff; /*box-shadow:inset 0 40px 100px #eaeaea;*/}
+		#ul1 .n4{background: #ff4d29; /*box-shadow:inset 0 40px 100px #c92200;*/}
+		#ul1 .n5{background: #feba31; /*box-shadow:inset 0 40px 100px #d49a25;*/}
+		#ul1 .n6{background: #32a5e6; /*box-shadow:inset 0 40px 100px #0080c9;*/}
+
+	</style>
+	 <script src="move.js"></script>
+</head>
+<body>
+<audio src="love.mp3" loop="loop" autoplay style="display: none;"></audio>
+	<ul id="ul1">
+		<li class="n1"></li>
+		<li class="n2"></li>
+		<li class="n3"></li>
+		<li class="n4"></li>
+		<li class="n5"></li>
+		<li class="n6"></li>
+	</ul>
+
+	<script>
+		var oUl = document.getElementById('ul1');
+		var aLi = oUl.children;
+		var W = 80;
+
+		oUl.style.height = aLi[0].offsetHeight + (aLi.length-1) * W + 'px';
+		for(var i=1; i<aLi.length; i++){
+			
+			aLi[i].style.top = aLi[0].offsetHeight+(i-1) * W + 'px';
+		}
+
+		for(var i=0; i<aLi.length; i++){
+			aLi[i].index = i;
+			aLi[i].onclick = function(){
+
+				for(var i=0; i<aLi.length; i++){
+
+					if(i<=this.index){
+						move(aLi[i], {top: i*W}, 500);
+					}else{
+						move(aLi[i], {top: aLi[0].offsetHeight+(i-1) * W}, 500);
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>
